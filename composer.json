@@ -1,0 +1,21 @@
+{
+    "name": "steefdw/Blendle",
+    "description": "Blendle search package",
+    "license": "MIT",
+    "keywords": ["blendle"],
+    "authors": [
+        {
+            "name": "Steef de Winter",
+            "email": "beatniak@gmail.com"
+        }
+    ],
+    "require": {},
+    "require-dev": {
+        "phpunit/phpunit": "4.0.*"
+    },
+    "autoload": {
+        "psr-4": {
+            "Steefdw\\Blendle\\": "src"
+        }
+    }
+}
