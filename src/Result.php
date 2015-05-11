@@ -15,30 +15,27 @@ class Result {
 
     public function total()
     {
-        return isset($this->response->results) ? $this->response->results : 0;
+        return $this->object_get($this->response, 'results', 0);
     }
 
     public function next()
     {
-        return isset($this->response->_links->next->href) ? $this->response->_links->next->href
-                    : false;
+        return $this->object_get($this->response, '_links.next.href');
     }
 
     public function prev()
     {
-        return isset($this->response->_links->prev->href) ? $this->response->_links->prev->href
-                    : false;
+        return $this->object_get($this->response, '_links.prev.href');
     }
 
     public function url_fetched()
     {
-        return isset($this->response->_links->self->href) ? $this->response->_links->self->href
-                    : false;
+        return $this->object_get($this->response, '_links.self.href');
     }
 
     public function results()
     {
-        return isset($this->response->_embedded) ? $this->response->_embedded : false;
+        return $this->object_get($this->response, '_embedded', false);
     }
 
     public function snippets()
@@ -60,15 +57,44 @@ class Result {
         foreach($this->response->_embedded->results as $article)
         {
             $snippets[] = array(
-                'snippet'  => $article->snippet,
-                'link'     => $article->_embedded->item->_links->self->href,
-                'date'     => $article->_embedded->item->_embedded->manifest->date,
-                'provider' => $article->_embedded->item->_embedded->manifest->provider->id,
-                'images'   => $article->_embedded->item->_embedded->manifest->images,
+                'snippet'  => $this->object_get($article, 'snippet'),
+                'link'     => $this->object_get($article, '_embedded.item._links.self.href'),
+                'date'     => $this->object_get($article, '_embedded.item._embedded.manifest.date'),
+                'provider' => $this->object_get($article, '_embedded.item._embedded.manifest.provider.id'),
+                'images'   => $this->object_get($article, '_embedded.item._embedded.manifest.images'),
             );
         }
 
         return $snippets;
+    }
+    
+
+    /**
+     * Get an item from an object using "dot" notation.
+     *
+     * @param  object  $object
+     * @param  string  $key
+     * @param  mixed   $default
+     * @return mixed
+     */
+    function object_get($object, $key, $default = null)
+    {
+        if(is_null($key) || trim($key) == '')
+        {
+            return $object;
+        }
+            
+        foreach(explode('.', $key) as $segment)
+        {
+            if(!is_object($object) || !isset($object->{$segment}))
+            {
+                return $default;
+            }
+
+            $object = $object->{$segment};
+        }
+
+        return $object;
     }
 
 }
