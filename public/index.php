@@ -7,6 +7,7 @@ require_once __DIR__ . '/../vendor/autoload.php'; // Autoload files using Compos
 
 use Steefdw\Blendle\Blendle;
 
-$search = Blendle::search('blendle');
+//$search = Blendle::search('blendle');
+$search = Blendle::query('blendle')->limit(10)->find();
 
-var_export($search);
+var_dump($search);
