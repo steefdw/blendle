@@ -10,4 +10,7 @@ use Steefdw\Blendle\Blendle;
 //$search = Blendle::search('blendle');
 $search = Blendle::query('blendle')->limit(10)->find();
 
-var_dump($search);
+var_dump($search->next());
+var_dump($search->prev());
+var_dump($search->url_fetched());
+var_dump($search->articles());
