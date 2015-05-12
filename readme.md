@@ -2,15 +2,15 @@
 
 Blendle search is PHP package that enables you to search all the content on Blendle with a few lines of code.
 
-#if you like to do stuff manually
+### if you like to do stuff manually
 
     Blendle::search('blendle');
 
-#if you want to be more in control
+### if you want to be more in control
 
     $search = Blendle::query('blendle')->limit(10)->offset(10)->find();
 
-#stuff you can do with the result
+### stuff you can do with the result
 
 #####Show the total results
     $search->total();
@@ -31,7 +31,7 @@ Blendle search is PHP package that enables you to search all the content on Blen
 Blendle search 0.9
 
 
-## Install with composer
+### Install with composer
 Add `steefdw/Blendle` to `composer.json`.
 ```
 "steefdw/Blendle": "dev-master"
