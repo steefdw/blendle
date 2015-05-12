@@ -8,7 +8,9 @@ class Result {
 
     public function __construct($url)
     {
-        $this->response = (object) Rest::fetch($url);
+        $this->response = !is_null($url) 
+                        ? (object) Rest::fetch($url) 
+                        : null;
 
         return $this;
     }
@@ -100,7 +102,7 @@ class Result {
     {
         $articles = [];
 
-        foreach($this->response->_embedded->results as $article)
+        foreach($this->object_get($this->response, '_embedded.results', []) as $article)
         {
             $articles[] = array(
                 'snippet'  => $this->object_get($article, 'snippet'),
