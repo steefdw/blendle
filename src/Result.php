@@ -20,12 +20,16 @@ class Result {
 
     public function next()
     {
-        return $this->object_get($this->response, '_links.next.href');
+        $next_url = $this->object_get($this->response, '_links.next.href');
+        
+        return new Result($next_url);
     }
 
     public function prev()
     {
-        return $this->object_get($this->response, '_links.prev.href');
+        $prev_url = $this->object_get($this->response, '_links.prev.href');
+        
+        return new Result($prev_url);        
     }
 
     public function url_fetched()
@@ -70,8 +74,16 @@ class Result {
     
 
     /**
-     * Get an item from an object using "dot" notation.
+     * The object_get method will retrieve a given value from a deeply nested object using "dot" notation.
+     * See also: http://laravel.com/docs/5.0/helpers
      *
+     * Example: $headline = object_get(
+     *      $articles_response, 
+     *      'articles.' .$article_id. '.headline', 
+     *      'could not find headline'
+     * );
+     * 
+     * 
      * @param  object  $object
      * @param  string  $key
      * @param  mixed   $default
