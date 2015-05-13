@@ -124,12 +124,15 @@ class Result {
      * The object_get method will retrieve a given value from a deeply nested object using "dot" notation.
      * See also: http://laravel.com/docs/5.0/helpers
      *
-     * Example: $headline = object_get(
-     *      $articles_response, 
-     *      'articles.' .$article_id. '.headline', 
-     *      'could not find headline'
-     * );
+     * Example: 
+     * $articles = (object)['articles' => (object)['item1' => (object)['headline' => 'Man bites dog']]];
      * 
+     * $this->object_get($articles, 'articles.item1.headline');
+     * // 'Man bites dog'
+     * $this->object_get($articles, 'articles.item404.headline');
+     * // null
+     * $this->object_get($articles, 'articles.item404.headline', 'headline not found');
+     * // 'headline not found'
      * 
      * @param  object  $object
      * @param  string  $key
