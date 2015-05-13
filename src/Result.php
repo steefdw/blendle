@@ -105,11 +105,14 @@ class Result {
         foreach($this->object_get($this->response, '_embedded.results', []) as $article)
         {
             $articles[] = array(
-                'snippet'  => $this->object_get($article, 'snippet'),
-                'link'     => $this->object_get($article, '_embedded.item._links.self.href'),
-                'date'     => $this->object_get($article, '_embedded.item._embedded.manifest.date'),
-                'provider' => $this->object_get($article, '_embedded.item._embedded.manifest.provider.id'),
-                'images'   => $this->object_get($article, '_embedded.item._embedded.manifest.images'),
+                'id'        => $this->object_get($article, '_embedded.item._embedded.manifest.id'),
+                'links'     => array(
+                    'self'     => $this->object_get($article, '_embedded.item._links.self.href'),
+                    'content'  => $this->object_get($article, '_embedded.item._links.item_content.href'),                    
+                    'manifest' => $this->object_get($article, '_embedded.item._embedded.manifest._links.self.href'),                    
+                ),
+                'snippet'   => $this->object_get($article, 'snippet'),
+                'item'      => $this->object_get($article, '_embedded.item._embedded.manifest'),
             );
         }
 
