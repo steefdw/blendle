@@ -32,7 +32,7 @@ Blendle search 0.9
 
 
 ### Install with composer
-Add `steefdw/Blendle` to `composer.json`.
+Add `steefdw/blendle` to `composer.json`.
 ```
 "steefdw/Blendle": "dev-master"
 ```
@@ -40,15 +40,15 @@ Run `composer update` to pull down the latest version of this Blendle search pac
 
 Or run:
 ```
-composer require steefdw/Blendle
+composer require steefdw/blendle
 ```
 ### Install manually
 
 You can get the extension via Git:
 
-    git clone https://github.com/steefdw/Blendle.git
+    git clone https://github.com/steefdw/blendle.git
 
-Or [download it as zip archive](https://github.com/steefdw/Blendle/archive/master.zip).
+Or [download it as zip archive](https://github.com/steefdw/blendle/archive/master.zip).
 
 ### Wait, what... Composer? 
 Please invest 15 minutes of your time today, to save days (or weeks!) of your time in the future. 
