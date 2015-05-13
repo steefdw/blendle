@@ -40,6 +40,7 @@ class Rest {
         return array(
             'http' => array(
                 'method' => "GET",
+                'header' => "User-Agent:Blendle Search Library/0.9\r\n",
             )
         );
     }
