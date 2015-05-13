@@ -10,7 +10,7 @@ class Query {
         'max_age',
         'min_words',
         'max_words',
-        'category',
+        'category', // populair, new, kranten, tijdschriften, web, internationaal
         'provider_id',
         'users',        
     );

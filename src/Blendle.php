@@ -6,8 +6,7 @@ class Blendle extends Query {
 
     private $url        = 'https://ws.blendle.nl/search';
     protected $parameters = array();
-    
-    //https://ws.blendle.nl/search{?q,offset,limit,max_age,min_words,max_words,category,provider_id,users}
+
     public static function search($query)
     {
         $blendle = new Blendle();
